@@ -14,18 +14,19 @@ const API_LANG = "&lang=pl";
 const getCities = () => {
   const cities = input.value || "Warszawa";
   const URL = API_LINK + cities + API_KEY + API_UNITS + API_LANG;
-  axios.get(URL).then((res) => {
-    console.log(res.data);
+  axios.get(URL).then((res) => {//pobrałem URL, dosałem się do potrzebnych danych z API
     const temp = res.data.main.temp;
     const hum = res.data.main.humidity;
     const status = Object.assign({}, ...res.data.weather);
-
+        //Przpisanie tekstu do HTML
     cityName.textContent =
       input.value.charAt(0).toUpperCase() + input.value.slice(1);
     weather.textContent = status.main;
     temperature.textContent = Math.floor(temp) + "°C";
     humidity.textContent = hum + "%";
-
+    warning.textContent = ''
+    input.value = ''
+    //przypisanie ikonek do kodu z API
     if (status.id >= 200 && status.id <= 232) {
       photo.setAttribute("src", "./img/thunderstorm.png");
       weather.textContent = "Burzowo";
@@ -50,7 +51,10 @@ const getCities = () => {
     } else {
       photo.setAttribute("src", "./img/unknown.png");
     }
-  });
+  })
+  .catch(err =>{
+      warning.textContent = 'Podaj właściwą nazwę miasta'
+  })
 };
 
 const enterEvent = (e) => {
