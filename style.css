@@ -11,7 +11,9 @@ body {
     height: 100vh;
     font-family: 'Montserrat', sans-serif;
     color: rgb(255, 255, 255);
-    background-image: linear-gradient(315deg, #c2118d 0%, #ff503c 74%);
+    /* background-image: linear-gradient(315deg, #c2118d 0%, #ff503c 74%); */
+    background-image: url('./img/weather_back.jpg');
+    background-size: cover;
     font-size: 20px;
 }
 
@@ -55,6 +57,7 @@ button:hover {
 
 .wrapper {
     width: 800px;
+    height: 80vh;
     padding: 20px 40px;
     background-color: rgba(0, 0, 0, .8);
     border: 2px solid white;
@@ -81,18 +84,22 @@ button:hover {
 }
 
 .headings,
-.weather-info {
+.weather-info,
+.weather-info2,
+.headings2 {
     display: flex;
     align-items: center;
 }
 
 .headings p,
-.weather-info p {
+.weather-info p,
+.weather-info2 p {
     width: 33.3%;
     text-align: center;
 }
 
-.headings {
+.headings,
+.headings2 {
     height: 35%;
     text-transform: uppercase;
     font-weight: bold;
@@ -100,7 +107,8 @@ button:hover {
     border-bottom: 1px solid #ddd;
 }
 
-.weather-info {
+.weather-info,
+.weather-info2 {
     height: 65%;
     font-size: 26px;
 }

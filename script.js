@@ -6,17 +6,20 @@ const photo = document.querySelector(".photo");
 const weather = document.querySelector(".weather");
 const temperature = document.querySelector(".temperature");
 const humidity = document.querySelector(".humidity");
+const realFell = document.querySelector('.real-feel')
 const API_LINK = "https://api.openweathermap.org/data/2.5/weather?q=";
 const API_KEY = "&appid=d2b6cbb301cc9b82439cc488b350ee22";
 const API_UNITS = "&units=metric";
 const API_LANG = "&lang=pl";
 
 const getCities = () => {
-  const cities = input.value || "Warszawa";
+  const cities = input.value
   const URL = API_LINK + cities + API_KEY + API_UNITS + API_LANG;
   axios.get(URL).then((res) => {//pobrałem URL, dosałem się do potrzebnych danych z API
+    console.log(res.data);
     const temp = res.data.main.temp;
     const hum = res.data.main.humidity;
+    const realTemp = res.data.main.feels_like
     const status = Object.assign({}, ...res.data.weather);
         //Przpisanie tekstu do HTML
     cityName.textContent =
@@ -24,6 +27,7 @@ const getCities = () => {
     weather.textContent = status.main;
     temperature.textContent = Math.floor(temp) + "°C";
     humidity.textContent = hum + "%";
+    realFell.textContent = realTemp + "°C";
     warning.textContent = ''
     input.value = ''
     //przypisanie ikonek do kodu z API
